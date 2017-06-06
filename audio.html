@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_ugsgzm49ibl6jemi.css">
+	<title>信息</title>
+</head>
+<body>
+	<div class="conainter">
+		<div class="meta" id="meta">
+			<div class="times">
+				<img src="img/img_ckk/index/times.png" alt="">
+			</div>
+			<div class="back">
+				<img src="img/img_ckk/index/back.png" alt="">
+			</div>
+		</div>
+		<div class="index_content">
+			<div id="map">
+				<div class="voice_prompt" id="music_list">
+					<div class="navigatetop clearfix bgc">
+						<ul class="Address_menu">
+							<li>
+								<div class="Address_content">
+									<i class="iconfont icon-iconweibofang"></i>
+									<span>未播放</span>
+								</div>
+							</li>
+							<li>
+								<div class="Address_content tel_call_after tel_call_bg">
+									<i class="iconfont icon-blog"></i>
+									<span>博客</span>
+								</div>
+							</li>
+							<li>
+								<div class="Address_content">
+									<i class="iconfont icon-paixingbang"></i>
+									<span>排行榜</span>
+								</div>
+							</li>
+							<li>
+								<div class="playing">
+									<p>播放中 &gt;</p>		
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="mapconTent Address_con">
+						<div class="Address_con_dot" style="display:none;">
+							<div class="Address_on_content collect_content">
+								<span>无个人收藏</span>
+							</div>
+						</div>
+						<div class="Address_con_dot" style="display:block;">
+							<div class="Address_on_content">
+								<div class="collection_left collection">
+									<ul>
+										<li><span class="penson_tel"></span></li>
+									</ul>
+								</div>
+								<div class="collection_middle collection collection_right">
+									<div class="conllection_middle_name">
+										<ul>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix" url="music/Baby Song.mp3">
+													<div class="callnow">
+														<span class="callnow_top">Boby Song</span>
+														<span class="callnow_bottom">未播放</span>
+													</div>
+													<div class="conllection_time conllection_time_blue">&gt;</div>
+												</div>
+											</li>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix" url="music/The Ocean.mp3">
+													<div class="callnow">
+														<span class="callnow_top">The Ocean</span>
+														<span class="callnow_bottom">未播放</span>
+													</div>
+													<div class="conllection_time conllection_time_blue">&gt;</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- <div class="collection_right address_scroll">
+									<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+									<div class="scroll_text"></div>
+									<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+								</div> -->
+							</div>
+						</div>
+						<div class="Address_con_dot">
+							<div class="address_list">
+								<div class="acronym"><span>Z</span></div>
+								<div class="acronym address_list_dot"><span>中国移动客服</span></div>
+								<div class="acronym address_list_dot"><span>中国电信客服</span></div>
+							</div>
+							<div class="address_scroll">
+								<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+								<div class="scroll_text">
+									<span>A<br><i class="iconfont icon-dian3"></i><br>Z<br>#</span>
+								</div>
+								<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="voice_prompt" id="song_box">
+					<div class="navigatetop clearfix">
+						<p class="navitate_state song_back" style="color:#7ec9fc;font-size:20px;"> &lt; 返回</p>
+						<p class="navitate_title"><span class="song_num">9</span>/<span class="song_list">9</span></p>
+					</div>
+					<div class="mapconTent">
+						 <div class="song_title">
+						 	<p>Boby song</p>
+						 </div>
+						 <div class="singer">
+						 	<p>陈奕迅</p>
+						 </div>
+						 <div class="song_btns">
+						 	<div class="prev_music">
+						 		<i class="iconfont icon-kuaijin" style="font-size:50px;"></i>
+						 	</div>
+						 	<div class="pause">
+						 		<i class="iconfont icon-zanting1"></i>
+						 	</div>
+						 	<div class="next_music">
+						 		<i class="iconfont icon-player-forward"></i>
+						 	</div>
+						 </div>
+						 <div class="song_time">
+						 	<div class="song_start">
+						 		<span>0:00</span>
+						 	</div>
+						 	<div class="song_pregress">
+						 		<span class="progress"></span>
+						 		<span class="progress_line"></span>
+						 	</div>
+						 	<div class="song_end">
+						 		<span>-2:52</span>
+						 	</div>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<audio controls="controls" display="none"></audio>
+	<script src="script/jquery-3.1.1.min.js"></script>
+	<script>
+		function toplaybox(){
+			$("#song_box").animate({
+				left:"0",
+			},400);
+		}
+		$(function(){
+			var audio_url = null;
+			// 返回播放别表
+			$(".song_back").on("click",function(){
+				$("#song_box").animate({
+					left:"100%",
+				},400);
+			})
+
+			// 点击播放中，进入播放界面
+			$(".playing").on("click",function(){
+				$("#song_box").animate({
+					left:"0",
+				},400);
+			})
+
+
+			// 点击歌曲别表跳入播放中界面
+			$(".box_dot").on("click",function(){
+				if( audio_url == $(this).attr("url") ){
+					if( $("audio").get(0).paused ){
+						audio_url = $(this).attr("url");
+						$("audio").get(0).attr("url" , audio_url)
+						// $("audio").get(0).play();
+					}
+				}else{
+					audio_url = $(this).attr("url")
+					toplaybox()
+					$("audio").attr("src" , audio_url);
+					$("audio").get(0).play();
+				}
+				console.log();
+			})
+		})
+		// function tal(){
+		// 	var btnLength = $(".Address_content").length
+		// 	$(".Address_content").on('touchstart',function(){
+		// 		var index = $(this).parent().index();
+		// 		$(this).addClass("tel_call_active").parent().siblings().find(".Address_content").removeClass("tel_call_after");
+		// 		$(this).css({
+		// 			"background":"#7ec9fc",
+		// 		});
+		// 		$('.Address_con_dot').eq(index).fadeIn().siblings().hide();
+		// 	})
+		// 	$(".Address_content").on('touchend',function(){
+		// 		var oThis = $(this);
+		// 		$(this).removeClass("tel_call_active").addClass("tel_call_after")
+		// 		setTimeout(function(){
+		// 			oThis.css({
+		// 				"background":"",
+		// 			});
+		// 		},70)
+		// 	})
+		// }
+		// tal()
+	</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_ugsgzm49ibl6jemi.css">
+	<title>信息</title>
+</head>
+<body>
+	<div class="conainter">
+		<div class="meta" id="meta">
+			<div class="times">
+				<img src="img/img_ckk/index/times.png" alt="">
+			</div>
+			<div class="back">
+				<img src="img/img_ckk/index/back.png" alt="">
+			</div>
+		</div>
+		<div class="index_content">
+			<div id="map">
+				<div class="voice_prompt">
+					<div class="navigatetop clearfix">
+						<div class="navitate_arrow">
+							<img src="img/message_ckk/msg_icon.png" alt="" class="">
+						</div>
+						<p class="navitate_state">信息</p>
+						<div class="navitate_cancel" style="display:none;">
+							<p>取消</p>
+						</div>
+						<p class="navitate_title">显示信息 &gt; </p>
+					</div>
+					<div class="mapconTent">
+						<div class="message_waiting">
+							<ul>
+								<li class="on">正在读取...</li>
+								<li>更改</li>
+								<li>发送</li>
+							</ul>
+						</div>
+						<div class="mic" >
+							<img class="micImg" alt="" src="img/tel_ckk/micro.png">
+						</div>
+						<div class="siriwave_container">
+							<div class="subcontainer" id="container-ios9-canvas"></div>
+						</div>
+					</div>
+				</div>
+				<div class="voice_prompt" id="msg_list">
+					<div class="navigatetop">
+						<div class="msg_title">
+							<p class="msg_title">信息</p>
+							<div class="msg_modify">
+								<img src="img/message_ckk/modify.png" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="mapconTent Address_con">
+						<div class="msg_con_dot">
+							<div class="Address_on_content">
+								<div class="collection_left collection">
+									<ul>
+										<!-- <li><span class="penson_tel"></span></li> -->
+									</ul>
+								</div>
+								<div class="collection_middle collection">
+									<div class="conllection_middle_name">
+										<ul>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<span class="box_dot_left">张总</span>
+													<div class="conllection_time">上午11:58</div>
+												</div>
+											</li>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<span class="box_dot_left">李总</span>
+													<div class="conllection_time">昨天</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="collection_right address_scroll">
+									<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+									<div class="scroll_text"></div>
+									<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="script/jquery-3.1.1.min.js"></script>
+	<script src="script/siriwave.js"></script>
+	<script>
+		var SW9 = new SiriWave({
+			amplitude: 0.5,
+			container: document.getElementById('container-ios9-canvas'),
+			autostart: false,
+			style: 'ios9',
+			color:'#fff',
+			speed:0.05
+		});
+		animate(1000,function(){
+			$(".mapconTent .mic").fadeIn();
+		})
+		animate(2000,function(){
+			$(".mapconTent .mic").fadeOut();
+		})
+		animate(3000,function(){
+			SW9.start()
+		})
+		animate(6000,function(){
+			SW9.setAmplitude(0)
+			$(".siriwave_container").fadeOut()
+			$(".mapconTent .mic").fadeIn()
+			$(".navitate_arrow").hide()
+			$(".navitate_state").hide()
+			$(".navitate_cancel").fadeIn()
+			$(".navitate_title").css("color","#fff")
+			$(".navitate_title").html("张总")
+			$(".message_waiting").fadeIn()
+		})
+		animate(8000,function(){
+			$(".mapconTent .mic").fadeOut()
+			$(".siriwave_container").fadeIn()
+			$(".message_waiting ul li.on").css("color","#fff")
+			$(".message_waiting ul li.on").html("检查")
+			SW9.setSpeed(0.02)
+			SW9.setAmplitude(0.5)
+			SW9.start()
+		})
+		animate(9500,function(){
+			SW9.setAmplitude(0);
+			$(".siriwave_container").fadeOut();
+			$("#msg_list").fadeIn();
+		})
+
+		$(function(){
+			$(".msg_modify img").on("click",function(){
+				$(".navitate_arrow").fadeIn()
+				$(".navitate_state").fadeIn()
+				$(".navitate_cancel").hide()
+				$(".navitate_title").css("color","#7ec9fc")
+				$(".navitate_title").html("显示信息 &gt;")
+				$(".message_waiting").fadeOut()
+				$("#msg_list").fadeOut();
+			})
+		})
+		
+		function animate( time , callback ){
+			setTimeout(function(){
+				callback()
+			},time)
+		}
+	</script>
+</body>
+</html>

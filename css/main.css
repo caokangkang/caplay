@@ -1,0 +1,92 @@
+body,
+div,
+span,
+code,
+del,
+dfn,
+em,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+img,
+input,
+button,
+label,
+form,
+tbody,
+tfoot,
+thead,
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: relative;
+  font-size:10px;
+  color:#fff;
+  overflow: hidden;
+  font-family:"SimHei, STHeiti, STHeiti Light [STXihei]";
+}
+ul,
+li,
+dl,
+dt,
+dd {
+  list-style: none;
+}
+em {
+  font-style: normal;
+}
+img {
+  border: none;
+  vertical-align: top;
+}
+strong {
+  font-weight: bold;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix:after {
+  display: block;
+  content: '';
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  line-height: 0;
+}
+.show {
+  display: block !important;
+}
+.hidden {
+  display: none !important;
+}
+.visible-hidden {
+  visibility: hidden;
+}
+/*# sourceMappingURL=main.css.map */
