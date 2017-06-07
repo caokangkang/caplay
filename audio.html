@@ -149,16 +149,21 @@
 			</div>
 		</div>
 	</div>
-	<audio controls="controls" display="none"></audio>
+	<audio controls="controls" display="none" id="audio"></audio>
 	<script src="script/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="script/ckk_animate.js"></script>
+	<script type="text/javascript" src="script/ckk_move.js"></script>
 	<script>
-		function toplaybox(){
-			$("#song_box").animate({
-				left:"0",
-			},400);
-		}
+		var audio_url = null,
+			audio_duration = null,
+			now = null,
+			nowTime = null,
+			currentM = null,//保存歌曲分钟
+			currentS = null,//保存歌曲秒数
+			durationM = null,//保存总时长分
+			durationS = null;//保存总时长秒
 		$(function(){
-			var audio_url = null;
+			console.log($(".progress").width());
 			// 返回播放别表
 			$(".song_back").on("click",function(){
 				$("#song_box").animate({
@@ -180,17 +185,69 @@
 					if( $("audio").get(0).paused ){
 						audio_url = $(this).attr("url");
 						$("audio").get(0).attr("url" , audio_url)
-						// $("audio").get(0).play();
+						$("audio").get(0).play();
 					}
 				}else{
 					audio_url = $(this).attr("url")
 					toplaybox()
 					$("audio").attr("src" , audio_url);
 					$("audio").get(0).play();
+					audio()
 				}
 				// console.log();
 			})
+
+			// 快退15秒
+			$(".prev_music").on("click",function(){
+				console.log(1)
+				$("audio").get(0).pause();
+				var timeback = $("audio").get(0).currentTime + 15;
+				console.log(typeof String(timeback));
+				$("audio").get(0).currentTime = String(timeback);
+				setTimeout(function(){
+					$("audio").get(0).play();
+				},100)
+				// canplay()
+			})
 		})
+
+		// 显示播放界面方法
+		function toplaybox(){
+			$("#song_box").animate({
+				left:"0",
+			},400);
+		}
+
+		function audio(){
+			setInterval(function(){
+				audio_duration = $("audio").get(0).duration;
+				now = $("audio").get(0).currentTime;
+				nowTime = ( now/audio_duration )*($(".progress").width());
+				$(".progress_line").css("left" , nowTime + 'px')
+				currentM = parseInt(now/60)>9?""+parseInt(now/60):"0"+ parseInt(now/60);
+				currents = parseInt(now)%60>9?""+parseInt(now)%60:"0"+ parseInt(now)%60;
+				$(".song_start span").html(currentM + ":" +　currents)
+				durationM = parseInt(audio_duration/60)>9?""+parseInt(audio_duration/60):"0"+ parseInt(audio_duration/60);
+				durations = parseInt(audio_duration)%60>9?""+parseInt(audio_duration)%60:"0"+ parseInt(audio_duration)%60;
+				$(".song_end span").html( durationM+":"+ durations )
+			},1000)
+		}
+
+		function canplay(){
+			console.log(1)
+			document.getElementById("audio").addEventListener("canplay",function(){
+				console.log(2)
+				$("audio").get(0).pause();
+				var timeback = $("audio").get(0).currentTime + 15;
+				console.log(timeback);
+				$("audio").get(0).currentTime = timeback;
+				setTimeout(function(){
+					$("audio").get(0).play();
+				},100)
+			})
+		}
+
+
 		// function tal(){
 		// 	var btnLength = $(".Address_content").length
 		// 	$(".Address_content").on('touchstart',function(){
