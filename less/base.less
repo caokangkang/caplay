@@ -582,7 +582,8 @@
 	white-space: nowrap;
 }
 .song_title{
-	height:1.0rem;
+	margin-top:0.5rem;
+	height:1rem;
 	line-height:0.94rem;
 }
 .song_title p{
@@ -627,6 +628,10 @@
 	font-size:16px;
 	// background:red;
 }
+.prev_music img, .next_music img{
+	width:0.69rem;
+	height:0.42rem;
+}
 .song_pregress{
 	position:relative;
 	width:5.35rem;
@@ -652,3 +657,68 @@
 	width:0.04rem;
 	background:#8c8e8f;
 }
+
+/* 音乐页面样式 start */
+
+
+/* 歌曲循环方式 */
+.recycle_design{
+	width:100%;
+	height:1.057rem;
+	// background:red;
+}
+.recyclebox{
+	.flexbase();
+	.justify();
+	width:70%;
+	height:100%;
+	margin:0 auto;
+	// background:pink;
+}
+.recyclebox div{
+	flex:1;
+	height:100%;
+}
+.random div, .cycle div, .singlist div{
+	.flexbase();
+	.justify();
+	width:100%;
+	height:100%;
+}
+.random div{
+
+}
+.random div p, .cycle div p, .singlist div p{
+	.flexbase();
+	.justify();
+	width:0.93rem;
+	height:0.645rem;
+	border-radius:0.15rem;
+	background:#1f2526;
+}
+.random div{
+	justify-content:flex-start;
+}
+.random div p{
+	background:#fff;
+}
+.random p img{
+	width:0.502rem;
+	height:0.307rem;
+}
+.singlist p{
+	width:1.139rem;
+	height:0.63rem;
+}
+.singlist p img{
+	width:0.577rem;
+	height:0.165rem;
+}
+.cycle div{
+	justify-content:flex-end;
+}
+.cycle img{
+	width:0.427rem;
+	height:0.33rem;
+}
+/* 音乐页面样式 end */

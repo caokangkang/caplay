@@ -6,7 +6,7 @@
 	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="//at.alicdn.com/t/font_ugsgzm49ibl6jemi.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_30sypawsi5krcnmi.css">
 	<title>信息</title>
 </head>
 <body>
@@ -66,7 +66,7 @@
 									<div class="conllection_middle_name">
 										<ul>
 											<li class="conllection_name_dot">
-												<div class="box_dot clearfix" url="music/Baby Song.mp3">
+												<div class="box_dot clearfix" url="http://www.puzzle-idea.com/m/caokangkang/canplay/music/Baby%20Song.mp3" data-songname="Boby Song" data-singer="陈奕迅">
 													<div class="callnow">
 														<span class="callnow_top">Boby Song</span>
 														<span class="callnow_bottom">未播放</span>
@@ -75,7 +75,7 @@
 												</div>
 											</li>
 											<li class="conllection_name_dot">
-												<div class="box_dot clearfix" url="music/The Ocean.mp3">
+												<div class="box_dot clearfix" url="http://www.puzzle-idea.com/m/caokangkang/canplay/music/The%20Ocean.mp3" data-songname="The Ocean" data-singer="J.Fla">
 													<div class="callnow">
 														<span class="callnow_top">The Ocean</span>
 														<span class="callnow_bottom">未播放</span>
@@ -126,7 +126,7 @@
 						 		<i class="iconfont icon-kuaijin" style="font-size:50px;"></i>
 						 	</div>
 						 	<div class="pause">
-						 		<i class="iconfont icon-zanting1"></i>
+						 		<i class="iconfont icon-kaishi2"></i>
 						 	</div>
 						 	<div class="next_music">
 						 		<i class="iconfont icon-player-forward"></i>
@@ -134,14 +134,14 @@
 						 </div>
 						 <div class="song_time">
 						 	<div class="song_start">
-						 		<span>0:00</span>
+						 		<span>00:00</span>
 						 	</div>
 						 	<div class="song_pregress">
 						 		<span class="progress"></span>
 						 		<span class="progress_line"></span>
 						 	</div>
 						 	<div class="song_end">
-						 		<span>-2:52</span>
+						 		<span>-00:00</span>
 						 	</div>
 						 </div>
 					</div>
@@ -149,16 +149,20 @@
 			</div>
 		</div>
 	</div>
-	<audio controls="controls" display="none"></audio>
+	<audio controls="controls" name="media" id="audio"></audio>
 	<script src="script/jquery-3.1.1.min.js"></script>
 	<script>
-		function toplaybox(){
-			$("#song_box").animate({
-				left:"0",
-			},400);
-		}
+		var audio_url = "http://www.puzzle-idea.com/m/caokangkang/canplay/music/Baby%20Song.mp3",
+			audio_duration = null,
+			now = null,
+			nowTime = null,
+			currentM = null,//保存歌曲分钟
+			currentS = null,//保存歌曲秒数
+			durationM = null,//保存总时长分
+			durationS = null,//保存总时长秒
+			songname = null,//获取歌手名称
+			singer=null;//获取歌手名称
 		$(function(){
-			var audio_url = null;
 			// 返回播放别表
 			$(".song_back").on("click",function(){
 				$("#song_box").animate({
@@ -174,23 +178,107 @@
 			})
 
 
-			// 点击歌曲别表跳入播放中界面
+			// 点击歌曲别表跳入播放界面
 			$(".box_dot").on("click",function(){
-				if( audio_url == $(this).attr("url") ){
+				if( $("audio").attr("src") == $(this).attr("url") ){
 					if( $("audio").get(0).paused ){
-						audio_url = $(this).attr("url");
-						$("audio").get(0).attr("url" , audio_url)
-						// $("audio").get(0).play();
+						toplaybox()
+						$(".pause").children().removeClass("icon-kaishi2").addClass("icon-zanting1")
+						$("audio").get(0).play();
+					}else{
+						
+						toplaybox()
 					}
 				}else{
+					console.log($(this).attr("data-songname"))
+					console.log($(this).attr("data-singer"))
+					songname = $(this).attr("data-songname");
+					singer = $(this).attr("data-singer");
+					console.log(songname)
+					console.log(singer)
+					$(".song_title").children().html(songname);
+					$(".singer").children().html(singer);
 					audio_url = $(this).attr("url")
+					$(".pause").children().removeClass("icon-kaishi2").addClass("icon-zanting1")
 					toplaybox()
 					$("audio").attr("src" , audio_url);
 					$("audio").get(0).play();
+					audio()
 				}
 				// console.log();
 			})
+
+
+			// 点击开始和暂停按钮
+			$(".pause").on("click",function(){
+				if( audio_url == $("audio").attr("src") ){
+					if( $("audio").get(0).paused ){
+						$(this).children().removeClass("icon-kaishi2").addClass("icon-zanting1")
+						$("audio").get(0).play();
+						audio()
+					}else{
+						$(this).children().removeClass("icon-zanting1").addClass("icon-kaishi2")
+						$("audio").get(0).pause();
+					}
+				}else{
+					$(this).children().removeClass("icon-kaishi2").addClass("icon-zanting1")
+					$("audio").attr("src" , audio_url);
+					$("audio").get(0).play();
+					audio()
+				}
+			})
+			// 快退15秒
+			$(".prev_music").on("click",function(){
+				$("audio")[0].currentTime -= 15;
+			})
+			// 快进15秒
+			$(".next_music").on("click",function(){
+				$("audio")[0].currentTime += 15;
+			})
+
+			// 判断音频是否播放完毕
+			$("audio").on("ended",function(){
+				$(".pause").children().removeClass("icon-zanting1").addClass("icon-kaishi2")
+				// $(".progress_line").css("left" , "0")
+			})
 		})
+
+		// 显示播放界面方法
+		function toplaybox(){
+			$("#song_box").animate({
+				left:"0",
+			},400);
+		}
+
+		function audio(){
+			setInterval(function(){
+				audio_duration = $("audio").get(0).duration;
+				now = $("audio").get(0).currentTime;
+				// now = 100;
+				nowTime = ( now/audio_duration )*($(".progress").width());
+				$(".progress_line").css("left" , nowTime + 'px')
+				currentM = parseInt(now/60)>9?""+parseInt(now/60):"0"+ parseInt(now/60);
+				currents = parseInt(now)%60>9?""+parseInt(now)%60:"0"+ parseInt(now)%60;
+				$(".song_start span").html(currentM + ":" +　currents)
+				durationM = parseInt(audio_duration/60)>9?""+parseInt(audio_duration/60):"0"+ parseInt(audio_duration/60);
+				durations = parseInt(audio_duration)%60>9?""+parseInt(audio_duration)%60:"0"+ parseInt(audio_duration)%60;
+				$(".song_end span").html("-" + durationM+":"+ durations )
+			},400)
+		}
+
+		function canplay(){
+			console.log(1)
+			document.getElementById("audio").addEventListener("onclick",function(){
+				// console.log(2)
+				$("audio").get(0).pause();
+				$("audio").get(0).currentTime += 15;
+				setTimeout(function(){
+					$("audio").get(0).play();
+				},100)
+			})
+		}
+
+
 		// function tal(){
 		// 	var btnLength = $(".Address_content").length
 		// 	$(".Address_content").on('touchstart',function(){
