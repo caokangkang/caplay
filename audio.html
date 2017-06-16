@@ -44,7 +44,7 @@
 							</li>
 							<li>
 								<div class="playing">
-									<p>播放中 &gt;</p>		
+									<p>播放中 &gt;</p>
 								</div>
 							</li>
 						</ul>
@@ -62,7 +62,7 @@
 										<li><span class="penson_tel"></span></li>
 									</ul>
 								</div>
-								<div class="collection_middle collection collection_right">
+								<div class="collection_middle collection collection_over">
 									<div class="conllection_middle_name">
 										<ul>
 											<li class="conllection_name_dot">
@@ -163,6 +163,12 @@
 			songname = null,//获取歌手名称
 			singer=null;//获取歌手名称
 		$(function(){
+
+			// 返回首页
+			$(".back img").on("click" , function(){
+				location.href = "index.html"
+			})
+
 			// 返回播放别表
 			$(".song_back").on("click",function(){
 				$("#song_box").animate({
@@ -190,12 +196,8 @@
 						toplaybox()
 					}
 				}else{
-					console.log($(this).attr("data-songname"))
-					console.log($(this).attr("data-singer"))
 					songname = $(this).attr("data-songname");
 					singer = $(this).attr("data-singer");
-					console.log(songname)
-					console.log(singer)
 					$(".song_title").children().html(songname);
 					$(".singer").children().html(singer);
 					audio_url = $(this).attr("url")
@@ -277,29 +279,6 @@
 				},100)
 			})
 		}
-
-
-		// function tal(){
-		// 	var btnLength = $(".Address_content").length
-		// 	$(".Address_content").on('touchstart',function(){
-		// 		var index = $(this).parent().index();
-		// 		$(this).addClass("tel_call_active").parent().siblings().find(".Address_content").removeClass("tel_call_after");
-		// 		$(this).css({
-		// 			"background":"#7ec9fc",
-		// 		});
-		// 		$('.Address_con_dot').eq(index).fadeIn().siblings().hide();
-		// 	})
-		// 	$(".Address_content").on('touchend',function(){
-		// 		var oThis = $(this);
-		// 		$(this).removeClass("tel_call_active").addClass("tel_call_after")
-		// 		setTimeout(function(){
-		// 			oThis.css({
-		// 				"background":"",
-		// 			});
-		// 		},70)
-		// 	})
-		// }
-		// tal()
 	</script>
 </body>
 </html>

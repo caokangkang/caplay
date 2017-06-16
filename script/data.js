@@ -1,7 +1,8 @@
 var audio_list = [
 	{
 		'src' : 'http://www.puzzle-idea.com/m/caokangkang/canplay/music/Baby%20Song.mp3',
-		'title' : 'Boby Song',
+		// 'src' : 'music/Baby_Song.mp3',
+		'title' : 'Boby_Song',
 		'singer' : '陈奕迅',
 	},
 	{

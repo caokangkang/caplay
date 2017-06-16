@@ -5,9 +5,13 @@
 	<meta name='viewport' content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/index.css">
-	<title>carplay</title>
+	<link rel="stylesheet" href="css/tel.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_30sypawsi5krcnmi.css">
+	<title>首页</title>
 </head>
 <body>
 	<div class="conainter">
@@ -20,55 +24,295 @@
 			</div>
 		</div>
 		<div class="index_content">
-			<div class="cont_top">
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_01.png" alt="">
+			<div class="index_box">
+				<div class="box_content">
+					<div class="cont_top clearfix">
+						<div class="img_dot telphone">
+							<div class="imgCont">
+								<img src="img/img_ckk/index/img_dot_01.png" alt="">
+							</div>
+							<p>电话</p>
+						</div>
+						<a class="img_dot" href="music.html">
+							<div class="imgCont">
+								<img src="img/img_ckk/index/img_dot_02.png" alt="">
+							</div>
+							<p>音乐</p>
+						</a>
+						<a class="img_dot" href="map.html">
+							<div class="imgCont">
+								<img src="img/img_ckk/index/img_dot_03.png" alt="">
+							</div>
+							<p>地图</p>
+						</a>
+						<a class="img_dot" href="message.html">
+							<div class="imgCont">
+								<img src="img/img_ckk/index/img_dot_04.png" alt="">
+							</div>
+							<p>信息</p>
+						</a>
 					</div>
-					<p>电话</p>
-				</div>
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_02.png" alt="">
+					<div class="cont_top clearfix">
+						<a class="img_dot">
+							<div class="imgCont" href="read.html">
+								<img src="img/img_ckk/index/img_dot_05.png" alt="">
+							</div>
+							<p>有声读物</p>
+						</a>
+						<a class="img_dot" href="audio.html">
+							<div class="imgCont">
+								<img src="img/img_ckk/index/img_dot_06.png" alt="">
+							</div>
+							<p>播放中</p>
+						</a>
 					</div>
-					<p>音乐</p>
-				</div>
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_03.png" alt="">
-					</div>
-					<p>地图</p>
-				</div>
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_04.png" alt="">
-					</div>
-					<p>信息</p>
 				</div>
 			</div>
-			<div class="cont_top">
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_05.png" alt="">
+
+			<!-- 电话模块 start -->
+			<div id="map">
+				<div class="voice_prompt">
+					<div class="navigatetop clearfix">
+						<div class="navitate_arrow">
+							<img src="img/img_ckk/index/img_dot_01.png" alt="" class="">
+						</div>
+						<p class="navitate_title">显示通讯录 &gt; </p>
 					</div>
-					<p>有声读物</p>
+					<div class="mapconTent">
+						<div class="mic">
+							<img class="micImg" alt="" src="img/tel_ckk/micro.png">
+						</div>
+						<div class="siriwave_container">
+							<div class="subcontainer" id="container-ios9-canvas"></div>
+						</div>
+					</div>
 				</div>
-				<div class="img_dot">
-					<div class="imgCont">
-						<img src="img/img_ckk/index/img_dot_06.png" alt="">
+				<div class="voice_prompt" id="Address">
+					<div class="navigatetop clearfix bgc">
+						<ul class="Address_menu">
+							<li>
+								<div class="Address_content tel_call_after">
+									<i class="iconfont icon-xingxing3"></i>
+									<span>个人收藏</span>
+								</div>
+							</li>
+							<li>
+								<div class="Address_content">
+									<i class="iconfont icon-iconshizhong0101"></i>
+									<span>最近通话</span>
+								</div>
+							</li>
+							<li>
+								<div class="Address_content">
+									<i class="iconfont icon-tongxunlu"></i>
+									<span>通讯录</span>
+								</div>
+							</li>
+							<li>
+								<div class="Address_content">
+									<i class="iconfont icon-bohaopan1"></i>
+									<span>拨号键盘</span>
+								</div>
+							</li>
+						</ul>
 					</div>
-					<p>播放中</p>
+					<div class="mapconTent Address_con">
+						<div class="Address_con_dot" style="display:block;">
+							<div class="Address_on_content collect_content">
+								<span>无个人收藏</span>
+							</div>
+						</div>
+						<div class="Address_con_dot">
+							<div class="Address_on_content">
+								<div class="collection_left collection">
+									<ul>
+										<li><span class="penson_tel"></span></li>
+									</ul>
+								</div>
+								<div class="collection_middle collection">
+									<div class="conllection_middle_name">
+										<ul>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<div class="callnow">
+														<span class="callnow_top">yuepingbi</span>
+														<span class="callnow_bottom">手机</span>
+													</div>
+													<div class="conllection_time">上午11:58</div>
+												</div>
+											</li>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<div class="callnow">
+														<span class="callnow_top">逐月</span>
+														<span class="callnow_bottom">手机</span>
+													</div>
+													<div class="conllection_time">昨天</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="collection_right address_scroll">
+									<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+									<div class="scroll_text"></div>
+									<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+								</div>
+							</div>
+						</div>
+						<div class="Address_con_dot">
+							<div class="address_list">
+								<div class="acronym"><span>Z</span></div>
+								<div class="acronym address_list_dot"><span>中国移动客服</span></div>
+								<div class="acronym address_list_dot"><span>中国电信客服</span></div>
+							</div>
+							<div class="address_scroll">
+								<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+								<div class="scroll_text">
+									<span>A<br><i class="iconfont icon-dian3"></i><br>Z<br>#</span>
+								</div>
+								<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+							</div>
+						</div>
+						<div class="Address_con_dot">
+							<div class="Address_on_content">
+								<div class="tel_key">
+									<div class="dial_centent tel_key_content">
+										<div class="tel_bohao">
+											<span data-numb="1">1</span>
+											<span data-numb="2">2<i class="tel_en">ABC</i></span>
+											<span data-numb="3">3<i class="tel_en">DEF</i></span>
+										</div>
+										<div class="tel_bohao">
+											<span data-numb="4">4<i class="tel_en">GHI</i></span>
+											<span data-numb="5">5<i class="tel_en">GKL</i></span>
+											<span data-numb="6">6<i class="tel_en">MNO</i></span>
+										</div>
+										<div class="tel_bohao">
+											<span data-numb="7">7<i class="tel_en">PQRS</i></span>
+											<span data-numb="8">8<i class="tel_en">TUV</i></span>
+											<span data-numb="9">9<i class="tel_en">WXYZ</i></span>
+										</div>
+										<div class="tel_bohao">
+											<span class="iconstyle" data-numb="*"><i class="iconfont icon-asterisks-1-copy-copy1"></i></span>
+											<span data-numb="0">0<i class="tel_en">+</i></span>
+											<span class="iconstyle" data-numb="#"><i class="iconfont icon-jing"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="key_call">
+									<div class="key_show">
+										<span class="keyinput"></span>
+										<div class="keyclose">
+											<i class="iconfont icon-delete"></i>
+										</div>
+									</div>
+									<img src="img/tel_ckk/key_call.png" alt="" class="callbtn">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dialing">
+					<span class="telNumber">10086</span>
+					<span class="callnows">正在呼叫phone...</span>
+					<ul class="telmenu">
+						<li>
+							<div class="telkey telkey_over">
+								<i class="iconfont icon-guaduan"></i>
+							</div>
+							<span>结束</span>
+						</li>
+						<li>
+							<div class="telkey telkey_mute">
+								<i class="iconfont icon-iosmicoff"></i>
+							</div>
+							<span>静音</span>
+						</li>
+						<li>
+							<div class="telkey telkey_call">
+								<i class="iconfont icon-bohaopan1"></i>
+							</div>
+							<span>拨号按键</span>
+						</li>
+						<li>
+							<div class="telkey telkey_addcall">
+								<i class="iconfont icon-jiahao1"></i>
+							</div>
+							<span>添加通话</span>
+						</li>
+					</ul>
+				</div>
+				<div class="voice_prompt dial"><!-- 拨通中的键盘拨号键 -->
+					<div class="dial_top clearfix">
+						<span class="dial_back toptext">返回</span>
+						<span class="dial_over toptext">结束</span>
+					</div>
+					<div class="dial_centent">
+						<div class="tel_bohao">
+							<span>1</span>
+							<span>2<i class="tel_en">ABC</i></span>
+							<span>3<i class="tel_en">DEF</i></span>
+						</div>
+						<div class="tel_bohao">
+							<span>4<i class="tel_en">GHI</i></span>
+							<span>5<i class="tel_en">GKL</i></span>
+							<span>6<i class="tel_en">MNO</i></span>
+						</div>
+						<div class="tel_bohao">
+							<span>7<i class="tel_en">PQRS</i></span>
+							<span>8<i class="tel_en">TUV</i></span>
+							<span>9<i class="tel_en">WXYZ</i></span>
+						</div>
+						<div class="tel_bohao">
+							<span class="iconstyle"><i class="iconfont icon-asterisks-1-copy-copy1"></i></span>
+							<span>0<i class="tel_en">+</i></span>
+							<span class="iconstyle"><i class="iconfont icon-jing"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="voice_prompt address_book">
+					<div class="navigatetop clearfix">
+						<span class="address_title">通讯录</span>
+						<span class="address_cancel">取消</span>
+					</div>
+					<div class="mapconTent clearfix">
+						<div class="address_list">
+							<div class="acronym"><span>Z</span></div>
+							<div class="acronym address_list_dot"><span>中国移动客服</span></div>
+							<div class="acronym address_list_dot"><span>中国电信客服</span></div>
+						</div>
+						<div class="address_scroll">
+							<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+							<div class="scroll_text">
+								<span>A<br><i class="iconfont icon-dian3"></i><br>Z<br>#</span>
+							</div>
+							<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+						</div>
+					</div>
 				</div>
 			</div>
+			<!-- 电话模块 end -->
 		</div>
 	</div>
+	<audio controls="controls" name="media" id="audio"></audio>
 	<script type="text/javascript" src="script/jquery-3.1.1.min.js"></script>
+	<script src="script/jquery-3.1.1.min.js"></script>
+	<script src="script/siriwave.js"></script>
+	<script src="script/tel.js"></script>
 	<script>
 		var cwidth = document.body.clientWidth;
 		var cheight = document.body.clientHeight;
 		$(function(){
-			$(".img_dot").on("click",function(){
-				console.log(1)
+			$(".back img").on("click", function(){
+
+				//点击返回主页
+				$(".back img").on("click",function(){
+					location.href = "index.html";
+				})
+				// $(".back img").on("click" , function(){
+				// 	$(".index_box").fadeIn();
+				// })
 			})
 		})
 	</script>

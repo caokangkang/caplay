@@ -1,34 +1,72 @@
 var fleg = false;
+var telmusic = [
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/1.mp3",
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/audio_man.mp3",
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/now_10086.mp3",
+];
 $(function() {
+
 	var SW9 = new SiriWave({
 		amplitude: 0.3,
 		container: document.getElementById('container-ios9-canvas'),
 		autostart: false,
 		style: 'ios9',
-		color:'#00ff00',
+		color:'#fff',
 		speed:0.05
 	});
-	setTimeout(function(){
-		$(".mapconTent .mic").fadeIn();
-	},1000)
-	setTimeout(function(){
-		$(".mapconTent .mic").fadeOut();
-	},2000)
+	$(".telphone").on("click",function(){
+		$(".index_box").fadeOut();
 
-	setTimeout(function(){
-		SW9.start()
-	},3000)
-	setTimeout(function(){
-		SW9.setAmplitude(0)
-		$(".siriwave_container").fadeOut();
-		$(".mapconTent .mic").fadeIn();
-	},6000)
-	setTimeout(function(){
-		$("#Address").fadeIn();
+		// $("#audio")[0].volume = 0;		
+		$("#audio").attr("src",telmusic[0])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		$("#audio").attr("src",telmusic[2])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		$("#audio").attr("src",telmusic[3])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		//提示 "我们要给谁打电话" 语音
 		setTimeout(function(){
-			$(".dialing").fadeIn();
-		},400)
-	},2000)//7000
+			$("#audio")[0].volume = 1;
+			$(".mapconTent .mic").fadeIn();
+			$("#audio").attr("src",telmusic[0])
+			$("#audio")[0].play();
+		},1000)
+
+		//拨打 "拨打10086" 语音
+		setTimeout(function(){
+			$(".mapconTent .mic").fadeOut();
+		},3000)
+
+
+		setTimeout(function(){
+			$("#audio").attr("src",telmusic[1])
+			$("#audio").get(0).play();
+			SW9.start()
+		},3000)
+
+
+		setTimeout(function(){
+			SW9.setAmplitude(0)
+			$("#audio").attr("src",telmusic[2])
+			$("#audio").get(0).play();
+			$(".siriwave_container").fadeOut();
+			$(".mapconTent .mic").fadeIn();
+		},5000)
+
+
+		setTimeout(function(){
+			$("#Address").fadeIn();
+			setTimeout(function(){
+				$(".dialing").fadeIn();
+			},400)
+		},8000)//7500
+	})
 
 	$(".telkey_over").on("click" , function(){
 		$(".callnows").html("通话结束");
@@ -100,6 +138,8 @@ $(function() {
 				});
 			},70)
 		})
+
+		
 	}
 	tal()
 
@@ -126,6 +166,21 @@ $(function() {
 			$(".keyinput").html(s);
 		}
 		ifdelete()
+	})
+
+	//点击结束拨号键盘“结束按钮”，结束通话
+	$(".dial_over").on("click" , function(){
+		animateTop('dial', "100%");
+		animateTop( "dialing" , '100%' )
+	})
+
+	//点击拨号键触发电话
+	$(".callbtn").on("click",function(){
+		$("#audio").attr("src","music/now_10086.mp3");
+		$("#audio").get(0).play();
+		setTimeout(function(){
+			animateTop( "dialing" , 0 );
+		},1500)
 	})
 });
 

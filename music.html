@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name='viewport' content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="//at.alicdn.com/t/font_30sypawsi5krcnmi.css">
@@ -28,10 +29,10 @@
 					</div>
 					<div class="mapconTent">
 						<div class="song_title">
-							<p>Boby song</p>
+							<p></p>
 						</div>
 						<div class="singer">
-							<p>陈奕迅</p>
+							<p></p>
 						</div>
 						<div class="song_btns">
 						 	<div class="prev_music">
@@ -101,158 +102,101 @@
 		var progress = null;
 		var n = 0;
 
+		$(".song_back").on("click",function(){
+			location.href = "index.html"
+		})
+
+		$(".back img").on("click" , function(){
+			location.href = "index.html"
+		})
 		var musicPlay = {
 			init : function(){
 				$(".song_title p").html(audio_list[n].title);
 				$(".singer p").html(audio_list[n].singer);
 				$("audio").attr("src" , audio_list[n].src);
 			},
-			play_function : function(){
+			player_function : function(){
+				// alert(this)
 				var This = this;
 				oMusic.play();
-				oPlay.className = "iconfont icon-kaishi1";
+
+				oPlay.className = "iconfont icon-zanting1";
 				//监听音乐时间
-				oMusic.addEventListener('timeUpdate',function(){
+				oMusic.addEventListener('timeupdate',function(){
+					var That = this;
 					if(this.ended){
 						n++;
-						n %= musicData.length;
+						n %= audio_list.length;
 						oProgressDot.style.left = '0px';
 						This.init();
 						This.player_function();
 						bMark = false;
 					}
+
+					//显示当前时间
+					setTimeout(function(){
+						//当前事件显示
+						// console.log(this.currentTime)
+						// console.log(this.duration)
+						Stime.innerHTML = conversionTime(That.currentTime);
+						Etime.innerHTML = conversionTime(That.duration);
+						// 当前进度条 = 当前事件 / 总时间 * 总长度
+						progress = oMusic.currentTime / oMusic.duration * oTotalProgress.offsetWidth + 'px';
+						oProgressDot.style.left = parseFloat( progress )  + "px";
+					},200)
 				})
-				//显示当前时间
-				setTimeOut(function(){
-					//当前事件显示
-					Stime[0].innerHTML = conversionTime(this.currentTime);
-					Etime[0].innerHTML = conversionTime(this.duration);
-					// 当前进度条 = 当前事件 / 总时间 * 总长度
-					progress = this.currentTime / this.duration * oTotalProgress.offsetWidth + 'px';
-					oProgressDot.style.left = parseFloat( progress )  + "px";
-				},200)
 			},
 			init_player : function(){
 				if( bMark == true ){
-					musicPlay.player_function;
+					musicPlay.player_function();
 				}else{
 					// 暂停
 					oMusic.pause();
 					oPlay.className = "iconfont icon-kaishi2";
 				}
 			},
-			forWard : function(){
+			// 上一首
+			backWard : function(){
 				var This = this;
 				$(".prev_music")[0].onclick = function(){
 					n--;
-					if( n < 0 )n = musiData.length = -1;
-					this.init();
-					musicPlay.play_function();
+					if( n < 0 )n = audio_list.length - 1;
+					This.init();
+					musicPlay.player_function();
 					bMark = false;
 				}
 			},
+			// 下一首
 			forWard : function(){
 				var This = this;
 				$(".next_music")[0].onclick = function(){
 					n++;
-					n %= musicData.length;
+					n %= audio_list.length;
 					This.init();
+					musicPlay.player_function();
+					bMark = false;
 				}
-			}
+			},
 			exe : function(){
 				this.init();
-
+				this.backWard();
+				this.forWard();
+				oPlay.onclick = function(){
+					musicPlay.init_player();
+				}
 			}
 		}
-
+		musicPlay.exe()
+		// console.log(musicPlay)
 		function conversionTime( t ){
 			var m = toTwo( Math.floor( t % 3600 / 60 ) );
 			var s = toTwo( Math.floor( t % 60 ) );
+			return m + ':' + s;
 			function toTwo(n){
-				return n > 9 ? String(n) : '0' + n
+				return n > 9 ? String(n) : '0' + n;
 			}
 		}
 
-
-
-
-
-
-
-
-
-
-		// function play_function(){
-		// 	var This = 
-		// }
-		$(function(){
-			// 返回播放别表
-			$(".song_back").on("click",function(){
-				location.href = "http://www.baidu.com";
-			})
-
-			// 点击播放
-
-
-			//点击下一首按钮
-			$(".next_music").on("click",function(){
-				audio_url = $("audio").attr("src")
-				var musiclength = audio_list.length
-				nextPlay = toplaybox()
-				console.log(nextPlay)
-			})
-
-			// 判断音频是否播放完毕
-			$("audio").on("ended",function(){
-				$(".pause").children().removeClass("icon-zanting1").addClass("icon-kaishi2")
-				// $(".progress_line").css("left" , "0")
-			})
-		})
-
-		function audioPlay(){
-			var nextPlay;
-			for(var i=0;i<musiclength;i++){
-				if(audio_url = audio_list[i]){
-					nextPlay = audio_list[i + 1];
-				}
-			}
-			return nextPlay
-		}
-
-		// 显示播放界面方法
-		function toplaybox(){
-			$("#song_box").animate({
-				left:"0",
-			},400);
-		}
-
-		function audio(){
-			setInterval(function(){
-				audio_duration = $("audio").get(0).duration;
-				now = $("audio").get(0).currentTime;
-				// now = 100;
-				nowTime = ( now/audio_duration )*($(".progress").width());
-				$(".progress_line").css("left" , nowTime + 'px')
-				currentM = parseInt(now/60)>9?""+parseInt(now/60):"0"+ parseInt(now/60);
-				currents = parseInt(now)%60>9?""+parseInt(now)%60:"0"+ parseInt(now)%60;
-				$(".song_start span").html(currentM + ":" +　currents)
-				durationM = parseInt(audio_duration/60)>9?""+parseInt(audio_duration/60):"0"+ parseInt(audio_duration/60);
-				durations = parseInt(audio_duration)%60>9?""+parseInt(audio_duration)%60:"0"+ parseInt(audio_duration)%60;
-				$(".song_end span").html("-" + durationM+":"+ durations )
-			},400)
-		}
-
-		function canplay(){
-			console.log(1)
-			document.getElementById("audio").addEventListener("onclick",function(){
-				// console.log(2)
-				$("audio").get(0).pause();
-				$("audio").get(0).currentTime += 15;
-				setTimeout(function(){
-					$("audio").get(0).play();
-				},100)
-			})
-		}
 	</script>
 </body>
 </html>
