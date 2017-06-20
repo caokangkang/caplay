@@ -20,7 +20,7 @@
 				<img src="img/img_ckk/index/times.png" alt="">
 			</div>
 			<div class="back">
-				<img src="img/img_ckk/index/back.png" alt="">
+				<img src="img/img_ckk/index/back.png" alt="" id="backbtn">
 			</div>
 		</div>
 		<div class="index_content">
@@ -45,16 +45,16 @@
 							</div>
 							<p>地图</p>
 						</a>
-						<a class="img_dot" href="message.html">
+						<div class="img_dot messagebtn">
 							<div class="imgCont">
 								<img src="img/img_ckk/index/img_dot_04.png" alt="">
 							</div>
 							<p>信息</p>
-						</a>
+						</div>
 					</div>
 					<div class="cont_top clearfix">
-						<a class="img_dot">
-							<div class="imgCont" href="read.html">
+						<a class="img_dot" href="read.html">
+							<div class="imgCont">
 								<img src="img/img_ckk/index/img_dot_05.png" alt="">
 							</div>
 							<p>有声读物</p>
@@ -83,7 +83,7 @@
 							<img class="micImg" alt="" src="img/tel_ckk/micro.png">
 						</div>
 						<div class="siriwave_container">
-							<div class="subcontainer" id="container-ios9-canvas"></div>
+							<div class="subcontainer" id="container-ios9_1-canvas"></div>
 						</div>
 					</div>
 				</div>
@@ -293,6 +293,84 @@
 				</div>
 			</div>
 			<!-- 电话模块 end -->
+
+			<!-- 信息模块 start -->
+				
+			<div id="messageContent">
+				<div class="voice_prompt">
+					<div class="navigatetop clearfix">
+						<div class="navitate_arrow navitate_arrow2">
+							<img src="img/message_ckk/msg_icon.png" alt="" class="">
+						</div>
+						<p class="navitate_state">信息</p>
+						<div class="navitate_cancel" style="display:none;">
+							<p>取消</p>
+						</div>
+						<p class="navitate_title navitate_title2">显示信息 &gt; </p>
+					</div>
+					<div class="mapconTent">
+						<div class="message_waiting">
+							<ul>
+								<li class="on">正在读取...</li>
+								<li>更改</li>
+								<li>发送</li>
+							</ul>
+						</div>
+						<div class="mic mic2">
+							<img class="micImg" alt="" src="img/tel_ckk/micro.png">
+						</div>
+						<div class="siriwave_container siriwave_container2">
+							<div class="subcontainer" id="container-ios9_2-canvas"></div>
+						</div>
+					</div>
+				</div>
+				<div class="voice_prompt" id="msg_list">
+					<div class="navigatetop">
+						<div class="msg_title">
+							<p class="msg_title">信息</p>
+							<div class="msg_modify">
+								<img src="img/message_ckk/modify.png" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="mapconTent Address_con">
+						<div class="msg_con_dot">
+							<div class="Address_on_content">
+								<div class="collection_left collection">
+									<ul>
+										<!-- <li><span class="penson_tel"></span></li> -->
+									</ul>
+								</div>
+								<div class="collection_middle collection">
+									<div class="conllection_middle_name">
+										<ul>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<span class="box_dot_left">张总</span>
+													<div class="conllection_time">上午11:58</div>
+												</div>
+											</li>
+											<li class="conllection_name_dot">
+												<div class="box_dot clearfix">
+													<span class="box_dot_left">李总</span>
+													<div class="conllection_time">昨天</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="collection_right address_scroll">
+									<div class="up"><i class="iconfont icon-xiangshang"></i></div>
+									<div class="scroll_text"></div>
+									<div class="down"><i class="iconfont icon-xiangshang"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<!-- 信息模块 end -->
 		</div>
 	</div>
 	<audio controls="controls" name="media" id="audio"></audio>
@@ -301,20 +379,158 @@
 	<script src="script/siriwave.js"></script>
 	<script src="script/tel.js"></script>
 	<script>
-		var cwidth = document.body.clientWidth;
-		var cheight = document.body.clientHeight;
-		$(function(){
-			$(".back img").on("click", function(){
+		var SW9_2 = new SiriWave({
+			amplitude: 0.5,
+			container: document.getElementById('container-ios9_2-canvas'),
+			autostart: false,
+			style: 'ios9',
+			color:'#fff',
+			speed:0.05
+		});
 
-				//点击返回主页
-				$(".back img").on("click",function(){
-					location.href = "index.html";
-				})
-				// $(".back img").on("click" , function(){
-				// 	$(".index_box").fadeIn();
-				// })
+
+		var messagemusic = [
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/who-are-message.mp3",
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/10086.mp3",
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/do-you-10086-something.mp3",
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/ok.mp3",
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/over.mp3",
+			"http://www.puzzle-idea.com/m/caokangkang/canplay/music/do-you-send.mp3"
+		];
+
+		$(".messagebtn").on("click" , function(){
+			$(".index_box").fadeOut();
+			$("#map").fadeOut();
+
+			$("#audio").attr("src",messagemusic[0])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			$("#audio").attr("src",telmusic[1])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			$("#audio").attr("src",telmusic[2])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			$("#audio").attr("src",telmusic[3])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			$("#audio").attr("src",telmusic[4])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			$("#audio").attr("src",telmusic[5])
+			$("#audio")[0].play();
+			$("#audio")[0].pause();
+
+			// $("#messageContent").fadeIn();
+
+			// 你想给谁发信息
+			animate(1000,function(){
+				$(".mapconTent .mic2").fadeIn();
+				$("#audio").attr("src",messagemusic[0])
+				$("#audio")[0].play();
+			})
+
+			animate(2000,function(){
+				$(".mapconTent .mic2").fadeOut();
+			})
+
+			// 10086
+			animate(3000,function(){
+				SW9_2.start()
+				$("#audio").attr("src",messagemusic[1])
+				$("#audio")[0].play();
+			})
+
+			// 你想对10086说些什么
+			animate(4500,function(){
+				SW9_2.setAmplitude(0)
+				$(".siriwave_container2").fadeOut()
+				$(".mapconTent .mic2").fadeIn()
+				$("#audio").attr("src",messagemusic[2])
+				$("#audio")[0].play();
+			})
+
+			//
+			animate(7500,function(){
+				$(".mapconTent .mic2").fadeOut()
+				$(".siriwave_container2").fadeIn()
+				SW9_2.setSpeed(0.02)
+				SW9_2.setAmplitude(0.5)
+				SW9_2.start()
+				$("#audio").attr("src",messagemusic[3])
+				$("#audio")[0].play();
+			})
+
+			animate(9500,function(){
+				SW9_2.setAmplitude(0)
+				$(".siriwave_container2").fadeOut()
+				$(".mapconTent .mic2").fadeIn()
+				$(".navitate_arrow2").hide()
+				$(".navitate_state").hide()
+				$(".navitate_cancel").fadeIn()
+				$(".navitate_title2").css("color","#fff")
+				$(".navitate_title2").html("10086")
+				$(".message_waiting").fadeIn()
+			})
+
+			animate(11500,function(){
+				$("#audio").attr("src",messagemusic[5])
+				$("#audio")[0].play();
+			})
+
+			//可以
+			animate(12500,function(){
+				$(".mapconTent .mic2").fadeOut()
+				$(".siriwave_container2").fadeIn()
+				$(".message_waiting ul li.on").css("color","#fff")
+				$(".message_waiting ul li.on").html("检查")
+				SW9_2.setSpeed(0.02)
+				SW9_2.setAmplitude(0.5)
+				SW9_2.start()
+				$("#audio").attr("src",messagemusic[3])
+				$("#audio")[0].play();
+			})
+
+			animate(13500,function(){
+				SW9_2.setAmplitude(0);
+				$(".siriwave_container2").fadeOut();
+				$(".mapconTent .mic2").fadeOut();
+				$("#audio").attr("src",messagemusic[4])
+				$("#audio")[0].play();
+			})
+
+			animate(14000,function(){
+				$(".mapconTent .mic2").fadeOut();
+				$("#msg_list").fadeIn();
 			})
 		})
+
+		//点击返回主页
+		$("#backbtn").on("click",function(){
+			location.href = "index.html";
+		})
+
+		$(".msg_modify img").on("click",function(){
+			$(".navitate_arrow2").fadeIn()
+			$(".navitate_state").fadeIn()
+			$(".navitate_cancel").hide()
+			$(".navitate_title2").css("color","#7ec9fc")
+			$(".navitate_title2").html("显示信息 &gt;")
+			$(".message_waiting").fadeOut()
+			$("#msg_list").fadeOut();
+		})
+
+		
+		function animate( time , callback ){
+			setTimeout(function(){
+				callback()
+			},time)
+		}
 	</script>
 </body>
 </html>

@@ -44,10 +44,10 @@ body {
   height: 100%;
   background: #000;
   position: relative;
-  font-size:10px;
-  color:#fff;
+  font-size: 10px;
+  color: #fff;
   overflow: hidden;
-  font-family:"SimHei, STHeiti, STHeiti Light [STXihei]";
+  font-family: "SimHei, STHeiti, STHeiti Light [STXihei]";
 }
 ul,
 li,
@@ -55,6 +55,10 @@ dl,
 dt,
 dd {
   list-style: none;
+}
+a,
+a:hover {
+  text-decoration: none;
 }
 em {
   font-style: normal;
@@ -89,4 +93,9 @@ strong {
 .visible-hidden {
   visibility: hidden;
 }
+/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=main.css.map */
 /*# sourceMappingURL=main.css.map */

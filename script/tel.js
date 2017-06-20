@@ -6,9 +6,9 @@ var telmusic = [
 ];
 $(function() {
 
-	var SW9 = new SiriWave({
-		amplitude: 0.3,
-		container: document.getElementById('container-ios9-canvas'),
+	var SW9_1 = new SiriWave({
+		amplitude: 0.5,
+		container: document.getElementById('container-ios9_1-canvas'),
 		autostart: false,
 		style: 'ios9',
 		color:'#fff',
@@ -16,6 +16,7 @@ $(function() {
 	});
 	$(".telphone").on("click",function(){
 		$(".index_box").fadeOut();
+		$("#map").fadeIn();
 
 		// $("#audio")[0].volume = 0;		
 		$("#audio").attr("src",telmusic[0])
@@ -47,12 +48,12 @@ $(function() {
 		setTimeout(function(){
 			$("#audio").attr("src",telmusic[1])
 			$("#audio").get(0).play();
-			SW9.start()
+			SW9_1.start()
 		},3000)
 
 
 		setTimeout(function(){
-			SW9.setAmplitude(0)
+			SW9_1.setAmplitude(0)
 			$("#audio").attr("src",telmusic[2])
 			$("#audio").get(0).play();
 			$(".siriwave_container").fadeOut();

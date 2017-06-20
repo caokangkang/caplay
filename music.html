@@ -136,16 +136,15 @@
 					//显示当前时间
 					setTimeout(function(){
 						//当前事件显示
-						// console.log(this.currentTime)
-						// console.log(this.duration)
 						Stime.innerHTML = conversionTime(That.currentTime);
 						Etime.innerHTML = conversionTime(That.duration);
 						// 当前进度条 = 当前事件 / 总时间 * 总长度
 						progress = oMusic.currentTime / oMusic.duration * oTotalProgress.offsetWidth + 'px';
 						oProgressDot.style.left = parseFloat( progress )  + "px";
-					},200)
+					},1000)
 				})
 			},
+			// 播放 / 暂停
 			init_player : function(){
 				if( bMark == true ){
 					musicPlay.player_function();
@@ -154,6 +153,7 @@
 					oMusic.pause();
 					oPlay.className = "iconfont icon-kaishi2";
 				}
+				bMark = !bMark
 			},
 			// 上一首
 			backWard : function(){
