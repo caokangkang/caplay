@@ -1,1 +1,385 @@
-.siriwave_container{position:absolute;top:4.122939rem;left:0;width:100%;height:2rem}.siriwave_container .subcontainer{width:100%;height:100%}.dialing{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:#000}.callnows,.telNumber{display:block;color:#fff;text-align:center}.telNumber{margin-top:1.874063rem;font-size:42px}.callnows{font-size:20px}.telmenu{display:flex;display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;width:100%;padding-top:.809595rem}.telmenu li{flex:1;text-align:center}.telmenu li .telkey{display:inline-block;border-radius:50%;border:1px solid #fff;width:1.49925rem;height:1.49925rem;text-align:center;line-height:1.49925rem}.telmenu li .telkeyColor{background:#fff}.telmenu li:nth-child(1) .telkey{background:red;border-style:none}.telmenu li:nth-child(1) .backgroundred{background:#812c15}.telmenu li .telkey i{color:#fff;font-size:28px}.telmenu li .telkeyColor i{color:#000}.telmenu li span{margin-top:.224888rem;display:block;color:#fff;font-size:16px}@keyframes wihtemove{0%{top:0;left:0;background:0 0;color:#fff}50%{top:50%;left:50%;background:0 0;color:#fff}100%{top:100%;left:100%;background:#fff;color:#000}50%{top:50%;left:50%;background:0 0;color:#fff}0%{top:0;left:0;background:0 0;color:#fff}}@-moz-keyframes wihtemove{0%{top:0;left:0;background:0 0;color:#fff}50%{top:50%;left:50%;background:0 0;color:#fff}100%{top:100%;left:100%;background:#fff;color:#000}50%{top:50%;left:50%;background:0 0;color:#fff}0%{top:0;left:0;background:0 0;color:#fff}}@-webkit-keyframes wihtemove{0%{top:0;left:0;background:0 0;color:#fff}50%{top:50%;left:50%;background:0 0;color:#fff}100%{top:100%;left:100%;background:#fff;color:#000}50%{top:50%;left:50%;background:0 0;color:#fff}0%{top:0;left:0;background:0 0;color:#fff}}@-o-keyframes wihtemove{0%{top:0;left:0;background:0 0;color:#fff}50%{top:50%;left:50%;background:0 0;color:#fff}100%{top:100%;left:100%;background:#fff;color:#000}50%{top:50%;left:50%;background:0 0;color:#fff}0%{top:0;left:0;background:0 0;color:#fff}}.dial{position:absolute;top:100%;left:0;width:100%;height:100%;background:#000}.dial_top{width:100%;height:19%;background:#181d1e}.dial_back,.dial_over{display:flex;display:-webkit-box;display:-webkit-flex;width:2.248876rem;height:100%;justify-content:center;align-items:center}.dial_back{float:left;color:#7ec9fc}.dial_over{float:right;color:red}.dial_centent{width:100%;height:81%}.dial_centent .tel_bohao{display:-webkit-flex;display:-webkit-box;display:flex;justify-content:center;align-items:center;width:100%;height:25%;text-align:center}.tel_bohao span{width:1.124438rem;height:1.124438rem;border-radius:50%;margin-right:.404798rem;border:.022489rem solid #fff;font-size:30px;color:#fff}.tel_bohao span .tel_en{display:block;font-style:normal;font-size:12px;visibility:top;margin-top:-.074963rem}.tel_bohao span.iconstyle{display:-webkit-flex;display:-webkit-box;display:flex;justify-content:center;align-items:center;font-size:34px}.address_book{position:absolute;top:100%;left:0;background:#000}.address_cancel,.address_title{display:-webkit-flex;display:-webkit-box;display:flex;justify-content:center;align-items:center;height:100%;font-size:22px}.address_title{float:left;width:78%;color:#fff}.address_cancel{float:left;width:22%;color:#7ec9fc}.address_list{float:left;width:88%;height:100%;background:#181d1e}.address_scroll{float:left;width:12%;height:100%}.acronym{width:100%;height:.749625rem;background:#969696}.acronym span{display:-webkit-flex;display:-webkit-box;display:flex;justify-content:flex-start;align-items:center;width:2.248876rem;height:100%;font-size:18px;font-weight:700;color:#fff;padding-left:.374813rem}.address_list_dot{height:.749625rem;font-size:20px;border-bottom:1px solid #121212;color:#fff;background:0 0}
+/* 语音样式 */
+.siriwave_container {
+  position: absolute;
+  top: 4.122939rem;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+}
+.siriwave_container .subcontainer {
+  width: 100%;
+  height: 100%;
+}
+/* 正在拨号的样式 start */
+.dialing {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+.telNumber,
+.callnows {
+  display: block;
+  color: #fff;
+  text-align: center;
+}
+.telNumber {
+  margin-top: 1.874063rem;
+  font-size: 42px;
+}
+.callnows {
+  font-size: 20px;
+}
+.telmenu {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  width: 100%;
+  padding-top: 0.809595rem;
+}
+.telmenu li {
+  flex: 1;
+  text-align: center;
+}
+.telmenu li .telkey {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  width: 1.49925rem;
+  height: 1.49925rem;
+  text-align: center;
+  line-height: 1.49925rem;
+}
+.telmenu li .telkeyColor {
+  background: #fff;
+}
+.telmenu li:nth-child(1) .telkey {
+  background: #ff0000;
+  border-style: none;
+}
+.telmenu li:nth-child(1) .backgroundred {
+  background: #812c15;
+}
+.telmenu li .telkey i {
+  color: #fff;
+  font-size: 28px;
+}
+.telmenu li .telkeyColor i {
+  color: #000;
+}
+.telmenu li span {
+  margin-top: 0.224888rem;
+  display: block;
+  color: #fff;
+  font-size: 16px;
+}
+@keyframes wihtemove {
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    background: #fff;
+    color: #000;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+}
+@-moz-keyframes wihtemove {
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    background: #fff;
+    color: #000;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+}
+@-webkit-keyframes wihtemove {
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    background: #fff;
+    color: #000;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+}
+@-o-keyframes wihtemove {
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    background: #fff;
+    color: #000;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    color: #fff;
+  }
+  0% {
+    top: 0%;
+    left: 0%;
+    background: transparent;
+    color: #fff;
+  }
+}
+/* 正在拨号的样式 end */
+/* 通话中的拨号键 start */
+.dial {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+.dial_top {
+  width: 100%;
+  height: 19%;
+  background: #181d1e;
+}
+.dial_back,
+.dial_over {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  width: 2.248876rem;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.dial_back {
+  float: left;
+  color: #7ec9fc;
+}
+.dial_over {
+  float: right;
+  color: red;
+}
+.dial_centent {
+  width: 100%;
+  height: 81%;
+}
+.dial_centent .tel_bohao {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+  text-align: center;
+}
+.tel_bohao span {
+  width: 1.124438rem;
+  height: 1.124438rem;
+  border-radius: 50%;
+  margin-right: 0.404798rem;
+  border: 0.022489rem solid #fff;
+  font-size: 28px;
+  color: #fff;
+  line-height: 0.95rem;
+}
+.tel_bohao .tel_num {
+  display: block;
+  font-style: normal;
+  height: 40%;
+}
+.tel_bohao span .tel_en {
+  display: block;
+  font-style: normal;
+  font-size: 10px;
+  visibility: top;
+  margin-top: -0.074963rem;
+}
+.tel_bohao span.iconstyle {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+}
+.address_book {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000;
+}
+.address_title,
+.address_cancel {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 22px;
+}
+.address_title {
+  float: left;
+  width: 78%;
+  color: #fff;
+}
+.address_cancel {
+  float: left;
+  width: 22%;
+  color: #7ec9fc;
+}
+.address_list {
+  float: left;
+  width: 88%;
+  height: 100%;
+  background: #181d1e;
+}
+.address_scroll {
+  float: left;
+  width: 12%;
+  height: 100%;
+}
+.acronym {
+  width: 100%;
+  height: 0.749625rem;
+  background: #969696;
+}
+.acronym span {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 2.248876rem;
+  height: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  padding-left: 0.374813rem;
+}
+.address_list_dot {
+  height: 0.749625rem;
+  font-size: 20px;
+  border-bottom: 1px solid #121212;
+  color: #fff;
+  background: transparent;
+}
+/* .address_scroll .up, .address_scroll .down{
+	display:-webkit-flex;
+	display:-webkit-box;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:25%;
+	color:@color-one;
+}
+.address_scroll .up i, .address_scroll .down i{
+	font-size:26px;
+}
+.address_scroll .down i{
+	transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+}
+.address_scroll .scroll_text{
+	display:-webkit-flex;
+	display:-webkit-box;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:50%;
+}
+.scroll_text span{
+	font-size:18px;
+	display: block;
+	width:100%;
+	color:@color-one;
+	text-align: center;
+} */
+/* 通话中的拨号键 end */
+/*# sourceMappingURL=tel.css.map */

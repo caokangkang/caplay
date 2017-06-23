@@ -3,6 +3,9 @@ var telmusic = [
 	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/1.mp3",
 	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/audio_man.mp3",
 	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/now_10086.mp3",
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/welcome-10086.mp3",
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/dingding.mp3",
+	"http://www.puzzle-idea.com/m/caokangkang/canplay/music/dongdong.mp3",
 ];
 $(function() {
 
@@ -18,8 +21,12 @@ $(function() {
 		$(".index_box").fadeOut();
 		$("#map").fadeIn();
 
-		// $("#audio")[0].volume = 0;		
+		$("#audio")[0].volume = 0;
 		$("#audio").attr("src",telmusic[0])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		$("#audio").attr("src",telmusic[1])
 		$("#audio")[0].play();
 		$("#audio")[0].pause();
 
@@ -31,34 +38,60 @@ $(function() {
 		$("#audio")[0].play();
 		$("#audio")[0].pause();
 
+		$("#audio").attr("src",telmusic[4])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		$("#audio").attr("src",telmusic[5])
+		$("#audio")[0].play();
+		$("#audio")[0].pause();
+
+		// for(let i=0;i<telmusic.length;i++){
+		// 	$("#audio").attr("src",telmusic[i])
+		// 	$("#audio")[0].play();
+		// 	$("#audio")[0].pause();
+		// }
+
 		//提示 "我们要给谁打电话" 语音
 		setTimeout(function(){
 			$("#audio")[0].volume = 1;
 			$(".mapconTent .mic").fadeIn();
 			$("#audio").attr("src",telmusic[0])
 			$("#audio")[0].play();
-		},1000)
+		},2000)
 
 		//拨打 "拨打10086" 语音
 		setTimeout(function(){
 			$(".mapconTent .mic").fadeOut();
-		},3000)
+		},4000)
 
 
+		// 叮叮声
+		setTimeout(function(){
+			SW9_1.start()
+			$("#audio").attr("src",telmusic[4])
+			$("#audio").get(0).play();
+		},5100)
+
+
+		// 
 		setTimeout(function(){
 			$("#audio").attr("src",telmusic[1])
 			$("#audio").get(0).play();
-			SW9_1.start()
-		},3000)
-
+		},6500)
 
 		setTimeout(function(){
+			$("#audio").attr("src",telmusic[5])
+			$("#audio").get(0).play();
 			SW9_1.setAmplitude(0)
+			$(".siriwave_container").fadeOut();
+		},9000)
+
+		setTimeout(function(){
+			$(".mapconTent .mic").fadeIn();
 			$("#audio").attr("src",telmusic[2])
 			$("#audio").get(0).play();
-			$(".siriwave_container").fadeOut();
-			$(".mapconTent .mic").fadeIn();
-		},5000)
+		},10500)
 
 
 		setTimeout(function(){
@@ -66,7 +99,17 @@ $(function() {
 			setTimeout(function(){
 				$(".dialing").fadeIn();
 			},400)
-		},8000)//7500
+		},12500)//7500
+
+		setTimeout(function(){
+			timer()
+		},15000)
+
+		setTimeout(function(){
+			$("#audio").attr("loop",true)
+			$("#audio").attr("src",telmusic[3])
+			$("#audio").get(0).play();
+		},16500)
 	})
 
 	$(".telkey_over").on("click" , function(){
@@ -76,6 +119,9 @@ $(function() {
 			$(".telkey_over").removeClass("backgroundred");
 			animateTop( "dialing" , '100%' )
 		},1000)
+		stoptimer()
+		$("#audio").attr("src","")
+		$("#audio").attr("loop",false)
 	})
 
 	$(".telkey_mute").on("click" , function(){
@@ -145,6 +191,7 @@ $(function() {
 	tal()
 
 	$(".tel_bohao span").on("click",function(){//拨号键点击变亮和把文字放在右边的方框里
+		$(".prompt_box").html("") // 消除提示文字
 		var oThis = $(this);
 		var val = null;
 		$(this).css({
@@ -173,15 +220,40 @@ $(function() {
 	$(".dial_over").on("click" , function(){
 		animateTop('dial', "100%");
 		animateTop( "dialing" , '100%' )
+		$("#audio").attr("src","")
+		$("#audio").attr("loop",false)
+		stoptimer()
 	})
 
 	//点击拨号键触发电话
 	$(".callbtn").on("click",function(){
-		$("#audio").attr("src","music/now_10086.mp3");
-		$("#audio").get(0).play();
-		setTimeout(function(){
-			animateTop( "dialing" , 0 );
-		},1500)
+		var $kiput = $(".keyinput").html();
+		var len = $kiput.size()
+		// console.log(len)
+		if( len > 0 ){
+			console.log($(this).attr("src"))
+			$(this).attr("src","img/tel_ckk/key_call_btn_after.png");
+			setTimeout(() => {
+				$(this).attr("src","img/tel_ckk/key_call.png");
+			},800)
+			$("#audio").attr("src",telmusic[2]);
+			$("#audio").get(0).play();
+			setTimeout(function(){
+				$(".callnows").html("正在呼叫10086...");
+				animateTop( "dialing" , 0 );
+			},1900)
+			setTimeout(function(){
+				$(".keyinput").html("");
+				timer()
+			},3000)
+			setTimeout(function(){
+				$("#audio").attr("loop",true)
+				$("#audio").attr("src",telmusic[3]);
+				$("#audio").get(0).play();
+			},3500)
+		}else{
+			$(".prompt_box").html("请输入号码")
+		}
 	})
 });
 
@@ -199,4 +271,34 @@ function ifdelete(){
 	}else{
 		$(".keyclose i").show();
 	}
+}
+
+var t = 0;
+var flag;
+
+function timer() {
+	flag = setInterval(function(){
+		currentM = parseInt(t/60)>9?""+parseInt(t/60):"0"+ parseInt(t/60);
+		currents = parseInt(t)%60>9?""+parseInt(t)%60:"0"+ parseInt(t)%60;
+		$(".callnows").html(currentM + ":" +　currents)
+
+		t = t + 1;
+	},1000)
+}
+function stoptimer(){
+	clearTimeout(flag)
+	t = 0;
+}
+String.prototype.size = function(){
+	if(this == null || this == "") return 0;
+	var length = 0;
+	var char = 0;
+	for(var i=0;i<this.length;i++){
+		char = this.charCodeAt(i);
+		length++;
+		if(char<0){
+			length++;
+		}
+	}
+	return length
 }

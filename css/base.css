@@ -1,3 +1,4 @@
+/* 电话和信息图片的大小尺寸 */
 /* 定义右边内容的定义 */
 /* 宽高100% */
 /* flex容器兼容定义 */
@@ -19,7 +20,8 @@
 .navigatetop .navitate_arrow,
 .navigatetop .navitate_state,
 .navigatetop .navitate_title,
-.navigatetop .navitate_cancel {
+.navigatetop .navitate_cancel,
+.telphone_name {
   justify-content: center;
   align-items: center;
   display: flex;
@@ -33,13 +35,14 @@
 .navigatetop .navitate_arrow {
   float: left;
   justify-content: flex-end;
-  min-width: 0.749625rem;
+  min-width: 0.949625rem;
 }
 .navitate_arrow img {
-  width: 0.457271rem;
-  height: 0.427286rem;
+  width: 0.5944523rem;
+  height: 0.5554718rem;
 }
-.navitate_state {
+.navitate_state,
+.telphone_name {
   float: left;
   width: 1.214393rem;
   color: #606262;
@@ -50,8 +53,9 @@
 }
 .navigatetop .navitate_title {
   float: right;
-  width: 2.098951rem;
+  width: 3rem;
   color: #7ec9fc;
+  font-size: 20px;
 }
 .mapconTent {
   position: relative;
@@ -121,7 +125,7 @@
 }
 /* 正在拨号的样式 start */
 .toptext {
-  font-size: 16px;
+  font-size: 20px;
 }
 /* 通讯录样式 start */
 #Address {
@@ -429,7 +433,8 @@
 .tel_bohao .numbermath {
   font-style: normal;
 }
-.key_show .keyinput {
+.key_show .keyinput,
+.prompt_box {
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -440,7 +445,11 @@
   width: 80%;
   height: 100%;
   text-align: right;
-  font-size: 24px;
+  font-size: 28px;
+}
+.prompt_box {
+  width: 100%;
+  height: 0.5997rem;
 }
 .key_show .keyclose {
   display: flex;
